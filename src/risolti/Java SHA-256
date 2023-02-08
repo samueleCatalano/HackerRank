@@ -1,0 +1,27 @@
+https://www.hackerrank.com/challenges/sha-256/problem?isFullScreen=true
+
+import java.util.*;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+
+public class Solution {
+
+    public static void main(String[] args) {
+        Scanner scan = new Scanner(System.in);
+        String alphanum = scan.nextLine();
+        MessageDigest md = null;
+        
+        try{
+            
+            md = MessageDigest.getInstance("SHA-256");
+            
+        }catch (NoSuchAlgorithmException e){
+            e.getMessage();
+        }
+        md.update(alphanum.getBytes(), 0, alphanum.length());
+      for (byte i : md.digest()) {
+            System.out.print(String.format("%02x", i));
+        }
+        scan.close();
+    }
+}
